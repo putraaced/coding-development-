@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CoBeachs | Relaxed Beachside Café</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --sunset-orange: #ff8c42;
+            --sunset-dark: #e07a5f;
+            --dark-purple: #2d132c;
+            --header-purple: #190918;
+            --ocean-black: #0d0d0d;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom, #ff8c42, #f96d00, #2d132c);
+            background-attachment: fixed;
+            color: #ffffff;
+        }
+
+        .navbar {
+            background-color: var(--header-purple) !important;
+            border-bottom: 2px solid var(--sunset-orange);
+        }
+
+        .hero-banner {
+            background-color: var(--dark-purple);
+            padding: 100px 20px;
+            text-align: center;
+            border-bottom-left-radius: 50% 20px;
+            border-bottom-right-radius: 50% 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .hero-banner h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            margin-bottom: 10px;
+            color: var(--sunset-orange);
+        }
+
+        .menu-section {
+            padding: 80px 0;
+        }
+
+        .category-title {
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            border-bottom: 2px solid var(--sunset-orange);
+            display: inline-block;
+            width: auto;
+            padding-bottom: 10px;
+        }
+
+        .menu-card {
+            background: rgba(25, 9, 24, 0.85);
+            border: 1px solid rgba(255, 140, 66, 0.3);
+            transition: transform 0.3s ease;
+            margin-bottom: 20px;
+            border-radius: 15px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .menu-card:hover {
+            transform: scale(1.02);
+            border-color: var(--sunset-orange);
+        }
+
+        .placeholder-img {
+            width: 150px;
+            min-width: 150px;
+            height: 150px;
+            background: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-style: italic;
+            text-align: center;
+            font-size: 0.8rem;
+            padding: 10px;
+        }
+
+        .btn-black {
+            background-color: var(--ocean-black);
+            color: white;
+            border: 1px solid var(--sunset-orange);
+            padding: 10px 25px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-black:hover {
+            background-color: var(--sunset-orange);
+            color: var(--ocean-black);
+        }
+
+        .hours-box {
+            background: rgba(13, 13, 13, 0.7);
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px dashed var(--sunset-orange);
+        }
+
+        .contact-section {
+            background-color: var(--header-purple);
+            padding: 60px 20px;
+            border-radius: 30px 30px 0 0;
+        }
+
+        .form-control {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid #444;
+            color: white;
+        }
+
+        footer {
+            background-color: #000;
+            padding: 20px;
+            color: #888;
+        }
+
+        /* AI Features Styling */
+        .ai-suggestion-box {
+            background: rgba(255, 140, 66, 0.1);
+            border: 2px solid var(--sunset-orange);
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 20px;
+            display: none;
+        }
+
+        .loading-spinner {
+            display: none;
+            width: 2rem;
+            height: 2rem;
+            border: 0.25em solid currentColor;
+            border-right-color: transparent;
+            border-radius: 50%;
+            animation: spinner-border .75s linear infinite;
+        }
+
+        @keyframes spinner-border {
+            to { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 576px) {
+            .menu-card {
+                flex-direction: column;
+                text-align: center;
+            }
+            .placeholder-img {
+                width: 100%;
+                height: 120px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#" style="color: var(--sunset-orange); letter-spacing: 2px;">CoBeachs</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#menu">Menu</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#hours">Waktu Operasi</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Hubungi Kami</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Banner -->
+    <header class="hero-banner">
+        <div class="container">
+            <h1>CoBeachs</h1>
+            <p class="lead">Nikmati suasana matahari terbenam dengan secawan kebahagiaan.</p>
+            <div class="d-flex justify-content-center gap-2 mt-3 flex-wrap">
+                <a href="#menu" class="btn btn-black">Lihat Menu</a>
+                <button onclick="speakWelcome()" class="btn btn-black">✨ Dengar Aluan</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- AI Suggestion Section -->
+    <section class="container mt-5">
+        <div class="card bg-dark border-secondary p-4 text-center">
+            <h3>✨ Cadangkan Menu Berdasarkan Mood</h3>
+            <p>Beritahu kami bagaimana perasaan anda hari ini, dan AI kami akan mencadangkan hidangan terbaik!</p>
+            <div class="input-group mb-3">
+                <input type="text" id="userMood" class="form-control" placeholder="Contoh: Saya rasa penat tapi lapar...">
+                <button class="btn btn-black" type="button" onclick="generateAiSuggestion()">✨ Cari Menu</button>
+            </div>
+            <div id="aiLoader" class="loading-spinner mx-auto mb-3"></div>
+            <div id="suggestionOutput" class="ai-suggestion-box text-start"></div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="container menu-section">
+        <!-- Hidangan Utama -->
+        <div class="text-center">
+            <h2 class="category-title">Hidangan Utama</h2>
+        </div>
+        <div id="meals-list" class="row">
+            <div class="col-12">
+                <div class="card menu-card">
+                    <div class="placeholder-img">[Imej Salmon Panggang]</div>
+                    <div class="card-body">
+                        <h5>Sunset Grilled Salmon</h5>
+                        <p class="small text-light-emphasis">Dipanggang dengan parutan kulit oren dan herba segar.</p>
+                    </div>
+                </div>
+                <div class="card menu-card">
+                    <div class="placeholder-img">[Imej Burger Tropikal]</div>
+                    <div class="card-body">
+                        <h5>Tropical Beach Burger</h5>
+                        <p class="small text-light-emphasis">Patty daging lembu dengan nanas panggang yang juicy.</p>
+                    </div>
+                </div>
+                <div class="card menu-card">
+                    <div class="placeholder-img">[Imej Seafood Paella]</div>
+                    <div class="card-body">
+                        <h5>Seafood Paella</h5>
+                        <p class="small text-light-emphasis">Hasil laut segar dihidangkan bersama nasi safron.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Minuman -->
+        <div class="text-center mt-5">
+            <h2 class="category-title">Minuman Segar</h2>
+        </div>
+        <div id="drinks-list" class="row">
+            <div class="col-12">
+                <div class="card menu-card">
+                    <div class="placeholder-img">[Imej Mojito]</div>
+                    <div class="card-body">
+                        <h5>Classic Mojito</h5>
+                        <p class="small text-light-emphasis">Pudina segar, limau nipis, dan soda yang menyegarkan.</p>
+                    </div>
+                </div>
+                <div class="card menu-card">
+                    <div class="placeholder-img">[Imej Mocktail]</div>
+                    <div class="card-body">
+                        <h5>Sunset Mocktail</h5>
+                        <p class="small text-light-emphasis">Campuran grenadine, oren, dan nanas.</p>
+                    </div>
+                </div>
+                <div class="card menu-card">
+                    <div class="placeholder-img">[Imej Coconut Latte]</div>
+                    <div class="card-body">
+                        <h5>Iced Coconut Latte</h5>
+                        <p class="small text-light-emphasis">Kopi espresso bersama santan kelapa berkrim.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pencuci Mulut -->
+        <div class="text-center mt-5">
+            <h2 class="category-title">Pencuci Mulut</h2>
+        </div>
+        <div id="desserts-list" class="row">
+            <div class="col-12">
+                <div class="card menu-card">
+                    <div class="placeholder-img">[Imej Pulut Mangga]</div>
+                    <div class="card-body">
+                        <h5>Mango Sticky Rice</h5>
+                        <p class="small text-light-emphasis">Mangga manis bersama pulut dan santan pekat.</p>
+                    </div>
+                </div>
+                <div class="card menu-card">
+                    <div class="placeholder-img">[Imej Kek Coklat Lava]</div>
+                    <div class="card-body">
+                        <h5>Chocolate Lava Cake</h5>
+                        <p class="small text-light-emphasis">Dihidangkan panas bersama gelato vanila.</p>
+                    </div>
+                </div>
+                <div class="card menu-card">
+                    <div class="placeholder-img">[Imej Tart Limau]</div>
+                    <div class="card-body">
+                        <h5>Key Lime Tart</h5>
+                        <p class="small text-light-emphasis">Tart limau masam manis dengan kerak biskut rangup.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Operational Hours -->
+    <section id="hours" class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="hours-box">
+                    <h2 class="mb-3">Waktu Operasi</h2>
+                    <p class="fs-4 fw-light">Setiap Hari</p>
+                    <p class="display-6 fw-bold" style="color: var(--sunset-orange);">4 PM - 12 AM</p>
+                    <p class="mt-3 text-secondary">Sertai kami untuk pemandangan 'Golden Hour' yang terbaik.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Feedback -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5 mb-5">
+                    <h2 class="mb-4" style="color: var(--sunset-orange);">Hubungi Kami</h2>
+                    <p>Kami ingin mendengar pengalaman anda di CoBeachs. Sebarang cadangan amat dialu-alukan.</p>
+                    <ul class="list-unstyled mt-4">
+                        <li class="mb-2">📍 Sunset Beach, North Coast</li>
+                        <li class="mb-2">📞 +60 12-345 6789</li>
+                        <li class="mb-2">📧 hello@cobeachs.com</li>
+                    </ul>
+                </div>
+                <div class="col-md-7">
+                    <div class="card border-0 p-4" style="background: rgba(0,0,0,0.3);">
+                        <form>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Nama</label>
+                                    <input type="text" id="contactName" class="form-control" placeholder="Nama Anda">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Email</label>
+                                    <input type="email" id="contactEmail" class="form-control" placeholder="nama@email.com">
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Maklum Balas</label>
+                                <textarea class="form-control" id="contactMessage" rows="4" placeholder="Tulis sesuatu di sini..."></textarea>
+                            </div>
+                            <button type="button" class="btn btn-black w-100" onclick="analyzeFeedback()">Hantar Mesej & ✨ Analisis Sentimen</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="text-center">
+        <div class="container">
+            <p>&copy; 2024 CoBeachs Beachside Café. Hak Cipta Terpelihara.</p>
+        </div>
+    </footer>
+
+    <!-- Gemini API Script -->
+    <script>
+        const apiKey = ""; // Diset secara automatik oleh persekitaran
+
+        // Fungsi Helper untuk Call Gemini
+        async function callGemini(prompt, model = "gemini-2.5-flash-preview-09-2025") {
+            const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
+            
+            let retries = 0;
+            const maxRetries = 5;
+            
+            while (retries < maxRetries) {
+                try {
+                    const response = await fetch(url, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
+                    });
+                    const data = await response.json();
+                    return data.candidates?.[0]?.content?.parts?.[0]?.text;
+                } catch (error) {
+                    retries++;
+                    const delay = Math.pow(2, retries) * 500;
+                    await new Promise(r => setTimeout(r, delay));
+                }
+            }
+            throw new Error("Gagal menghubungi AI setelah beberapa percubaan.");
+        }
+
+        // 1. AI Suggestion Based on Mood
+        async function generateAiSuggestion() {
+            const mood = document.getElementById('userMood').value;
+            if (!mood) return;
+
+            const loader = document.getElementById('aiLoader');
+            const output = document.getElementById('suggestionOutput');
+            
+            loader.style.display = 'block';
+            output.style.display = 'none';
+
+            const systemPrompt = "Anda adalah pelayan pakar di CoBeachs Cafe. Berdasarkan mood pelanggan, cadangkan SATU hidangan utama, SATU minuman, dan SATU pencuci mulut dari menu kami (Salmon, Burger, Paella, Mojito, Mocktail, Coconut Latte, Mango Sticky Rice, Lava Cake, Lime Tart). Berikan penjelasan ringkas kenapa ia sesuai dalam Bahasa Melayu yang santai.";
+            
+            try {
+                const suggestion = await callGemini(`Mood saya: ${mood}`, "gemini-2.5-flash-preview-09-2025");
+                output.innerHTML = `<strong>Cadangan AI untuk anda:</strong><br>${suggestion.replace(/\n/g, '<br>')}`;
+                output.style.display = 'block';
+            } catch (err) {
+                output.innerHTML = "Maaf, AI sedang berehat. Sila cuba sebentar lagi.";
+                output.style.display = 'block';
+            } finally {
+                loader.style.display = 'none';
+            }
+        }
+
+        // 2. TTS Welcome Message
+        async function speakWelcome() {
+            const text = "Selamat datang ke CoBeachs! Nikmati suasana matahari terbenam yang indah dan hidangan segar kami. Bagaimana kami boleh membantu anda hari ini?";
+            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-tts:generateContent?key=${apiKey}`;
+            
+            try {
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        contents: [{ parts: [{ text: `Say warmly in Malay: ${text}` }] }],
+                        generationConfig: {
+                            responseModalities: ["AUDIO"],
+                            speechConfig: { voiceConfig: { prebuiltVoiceConfig: { voiceName: "Kore" } } }
+                        }
+                    })
+                });
+                
+                const data = await response.json();
+                const audioData = data.candidates[0].content.parts[0].inlineData.data;
+                
+                // Convert PCM16 (L16) to WAV for playback
+                const audioBlob = pcmToWav(audioData, 24000); // Assuming 24kHz
+                const audioUrl = URL.createObjectURL(audioBlob);
+                const audio = new Audio(audioUrl);
+                audio.play();
+            } catch (err) {
+                console.error("TTS Error:", err);
+            }
+        }
+
+        // Helper: Convert Base64 PCM to WAV
+        function pcmToWav(base64Data, sampleRate) {
+            const binaryString = window.atob(base64Data);
+            const len = binaryString.length;
+            const bytes = new Uint8Array(len);
+            for (let i = 0; i < len; i++) bytes[i] = binaryString.charCodeAt(i);
+            
+            const wavHeader = new ArrayBuffer(44);
+            const view = new DataView(wavHeader);
+            
+            const writeString = (offset, string) => {
+                for (let i = 0; i < string.length; i++) view.setUint8(offset + i, string.charCodeAt(i));
+            };
+
+            writeString(0, 'RIFF');
+            view.setUint32(4, 36 + len, true);
+            writeString(8, 'WAVE');
+            writeString(12, 'fmt ');
+            view.setUint32(16, 16, true);
+            view.setUint16(20, 1, true); // PCM
+            view.setUint16(22, 1, true); // Mono
+            view.setUint32(24, sampleRate, true);
+            view.setUint32(28, sampleRate * 2, true);
+            view.setUint16(32, 2, true);
+            view.setUint16(34, 16, true);
+            writeString(36, 'data');
+            view.setUint32(40, len, true);
+
+            return new Blob([wavHeader, bytes], { type: 'audio/wav' });
+        }
+
+        // 3. Sentiment Analysis for Feedback
+        async function analyzeFeedback() {
+            const msg = document.getElementById('contactMessage').value;
+            if (!msg) return;
+
+            try {
+                const analysis = await callGemini(`Analisis sentimen mesej ini (Positif/Negatif/Neutral) dan berikan respon ringkas yang sesuai: "${msg}"`);
+                alert(`Terima kasih! Maklum balas anda telah diproses.\n\nAnalisis AI: ${analysis}`);
+            } catch (err) {
+                alert("Mesej dihantar! Terima kasih.");
+            }
+        }
+    </script>
+</body>
+</html>
