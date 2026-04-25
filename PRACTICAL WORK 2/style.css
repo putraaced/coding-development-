@@ -1,0 +1,112 @@
+:root {
+    --primary-color: #44caef;
+    --primary-hover: #37b6db;
+    --secondary-color: #6c757d;
+    --background-color: #f8f9fa;
+    --text-color: #212529;
+}   
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: Arial, Helvetica, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+
+#libCarousel {
+    margin-top: 20px;
+    max-height: 400px;
+    width: auto;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.btn-primary,
+.btn-success {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.btn-primary:hover,
+.btn-success:hover {
+    background-color: var(--primary-hover);
+    border-color: var(--primary-hover);
+}
+
+.btn {
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.btn:focus,
+.btn:hover {
+    transform: translateY(-1px);
+}
+
+.form-control,
+.form-select {
+    border-radius: 0.5rem;
+    border: 1px solid #ced4da;
+    box-shadow: none;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.15rem rgba(68, 202, 239, 0.25);
+}
+
+.container {
+  flex: 1;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.navbar {
+    background-color: var(--primary-color) !important;
+}
+.navbar .navbar-brand {
+    color: #fff !important;
+}
+.navbar .nav-link {
+    color: #fff !important;
+    
+}
+.navbar .nav-link:hover {
+    color: #ddd !important; 
+
+}
+
+.page-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+.card {
+  border-radius: 1rem;
+  background-color: #fff;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
+}
+footer {
+    background-color: var(--secondary-color);
+    color: #fff;
+    margin-top: 50px;
+    padding: 1rem 0;
+    text-align: center;
+}
+#libCarousel .carousel-item {
+  min-height: 260px;
+}
+#libCarousel .carousel-item img {
+  width: auto !important;
+  max-width: 40% !important;
+  height: auto;
+  max-height: 400px;
+  object-fit: contain;
+  margin: 0 auto;
+  display: block;
+}
