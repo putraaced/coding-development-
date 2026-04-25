@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Library Booking - Book List</title>
+    
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+</head>
+<body>
+   
+    <div data-role="page">
+        <div data-role="header" data-theme="b">
+            <h1>Library Booking</h1>
+            
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="index.html" data-ajax="false" data-icon="home">Home</a></li>
+                    <li><a href="booking.html" data-ajax="false" data-icon="grid">Booking</a></li>
+                    <li><a href="book.html" class="ui-btn-active" data-icon="info">Book</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div data-role="content">
+            <h3 style="text-align:center;">📚 Book Information</h3>
+            
+            <table data-role="table" class="ui-responsive table-stroke">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Book</th>
+                        <th>Author</th>
+                        <th>Copies</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>1</td><td>HTML Basics:<br>Learn Html Coding For Beginners</td><td>Chittaranjan Dhurat</td><td>10</td></tr>
+                    <tr><td>2</td><td>JavaScript:<br>Beginner's Guide to Programming Code with JavaScript</td><td>Charlie Masterson</td><td>10</td></tr>
+                    <tr><td>3</td><td>CSS Design:<br>Web Style Guide</td><td>Patrick J. Lynch, Sarah Horton</td><td>7</td></tr>
+                    <tr><td>4</td><td>Bootstrap:<br>Bootstrap for Responsive Web Design</td><td> Amit Diwan </td><td>7</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div data-role="footer" data-position="fixed" data-theme="b">
+            <h4>Library Booking System &copy; 2026</h4>
+        </div>
+    </div>
+</body>
+</html>
