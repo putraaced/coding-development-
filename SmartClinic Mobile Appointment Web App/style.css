@@ -1,0 +1,21 @@
+body {
+    font-family: Arial, sans-serif; /* Standard clean font [4] */
+    background-color: #f8f9fa; /* Light grey background */
+}
+
+
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+
+
+.main-container {
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+
+[data-role="content"] {
+    padding: 15px;
+}
