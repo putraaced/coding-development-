@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartClinic - Feedback</title>
+    
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    
+    <div data-role="page" id="feedbackPage">
+        
+        
+        <div data-role="header" data-theme="b" data-position="fixed">
+            <h1>SmartClinic</h1>
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="index.html" data-ajax="false">Home</a></li>
+                    <li><a href="services.html" data-ajax="false">Services</a></li>
+                    <li><a href="appointment.html" data-ajax="false">Booking</a></li>
+                    <li><a href="feedback.html" data-ajax="false" class="ui-btn-active">Feedback</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div data-role="content">
+            <h2 class="ui-bar ui-bar-a ui-corner-all">Thank You for Visiting!</h2>
+            <p>Your feedback is vital to help us improve our services.</p>
+
+            <form id="fbForm">
+                <div class="ui-field-contain">
+                    <label for="fbName">Full Name:</label>
+                    <input type="text" id="fbName" required>
+                </div>
+                <div class="ui-field-contain">
+                    <label for="fbEmail">Email Address:</label>
+                    <input type="email" id="fbEmail" required>
+                </div>
+                <div class="ui-field-contain">
+                    <label for="fbMessage">Your Message:</label>
+                    <textarea id="fbMessage" required></textarea>
+                </div>
+
+                <div class="ui-grid-a">
+                    <div class="ui-block-a">
+                       
+                        <button type="submit" class="ui-btn ui-btn-b ui-shadow ui-corner-all">Send Feedback</button>
+                    </div>
+                    <div class="ui-block-b">
+                        
+                        <button type="reset" class="ui-btn ui-shadow ui-corner-all">Reset Form</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div data-role="footer" data-position="fixed" data-theme="b">
+            <h4>&copy; 2026 SmartClinic Mersing</h4>
+        </div>
+
+        <script>
+            
+            $(document).on("submit", "#fbForm", function(e) {
+                e.preventDefault();
+                const name = $("#fbName").val();
+                
+                alert("Thank you, " + name + ". Your feedback has been sent to SmartClinic.");
+                this.reset();
+            });
+        </script>
+    </div>
+</body>
+</html>
